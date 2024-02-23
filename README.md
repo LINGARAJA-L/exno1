@@ -57,5 +57,19 @@ df.fillna(0)
 ```
 
 ```
+mn=df.TOTAL.mean()
+mn
+```
+
+```
+df.TOTAL.fillna(mn,inplace=True)
+```
+
+```
+for x in df.index:
+  if df.loc[x,"AVG"]>100:
+    df.drop(x,inplace=True)
+df
+```
 # Result
           <<include your Result here>>
