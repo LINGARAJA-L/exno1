@@ -83,4 +83,4 @@ df
 ![Screenshot 2024-02-23 155715](https://github.com/LINGARAJA-L/exno1/assets/129825857/ebeda40e-32f2-450d-a2fb-e4c2d1103d04)
 
 # Result
-          <<include your Result here>>
+The data clearning has beeen done successfully.
