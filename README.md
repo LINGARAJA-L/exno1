@@ -33,10 +33,12 @@ df.tail()
 ```
 df.info()
 ```
+![Screenshot 2024-02-23 155627](https://github.com/LINGARAJA-L/exno1/assets/129825857/c1652bc4-1221-43d7-9b43-caa041e9e504)
 
 ```
 df.describe()
 ```
+![Screenshot 2024-02-23 155639](https://github.com/LINGARAJA-L/exno1/assets/129825857/06daaaa1-c30f-4862-b074-d382efa80330)
 
 ```
 df.shape
