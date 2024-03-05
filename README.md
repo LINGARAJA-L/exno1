@@ -84,116 +84,165 @@ df
 
 # Outlier Detection and Removal 
 ## Coding and Output
-```py
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-data = pd.read_csv("/content/SAMPLEIDS.csv")
-data.head()
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/2e6f57eb-a0eb-46c0-80b6-78ef2ff9c3b4)
-
-```py
-data = pd.get_dummies(data)
-data.isnull().sum()
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/b11b71a8-0335-4acf-8e69-555a75bacf24)
-```py
-columns_with_null = data.columns[data.isnull().any()]
-import seaborn as sns
-plt.figure(figsize=(10,10))
-sns.barplot(columns_with_null)
-plt.title("NULL VALUES")
-plt.show()
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/deddaf55-87f4-42dc-b4ce-280775cc04b5)
-```py
-for column in columns_with_null:
-    median = data[column].median()  
-    data[column].fillna(median, inplace=True)
-data.isnull().sum().sum()
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/5636ffde-4bb3-4f4b-979f-f81fe1ee00bd)
-
-## IQR
-```py
+```Python
 import pandas as pd
 import seaborn as sns
-ir = pd.read_csv("/content/iris (1).csv")
-ir.head()
+age=[1,3,28,27,25,92,30,39,40,50,26,24,29,94]
+dff=pd.DataFrame(age)
+dff
 ```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/93d4d44c-8a8e-42ba-b50e-0d427a929e41)
-```py
-ir.describe()
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/82718575-7497-43ea-b6b0-0c048b061dd6)
-```py
-sns.boxplot(x='sepal_width',data=ir)
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/2a264b0b-1be7-4cb5-993a-edfb54c7369d)
-```py
-c1=ir.sepal_width.quantile(0.25)
-c3=ir.sepal_width.quantile(0.75)
-iq=c3-c1
-print(c3)
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/ec87fae6-5baa-4b0a-9c09-1c4e1c893ad8)
-```py
-rid=ir[((ir.sepal_width<(c1-1.5*iq))|(ir.sepal_width>(c3+1.5*iq)))]
-rid['sepal_width']
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/a6e1a0ff-84f2-47ae-a39a-f8037875611e)
-```py
-delid=ir[~((ir.sepal_width<(c1-1.5*iq))|(ir.sepal_width>(c3+1.5*iq)))]
-delid
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/8becd206-ddc7-4a58-85fc-b9cb1b63a53f)
-```py
-sns.boxplot(x='sepal_width',data=delid)
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/53b3e4cc-9961-4b92-af15-afa9dca57f97)
+              
+#### OUTPUT:
 
-## Z SCORE
-```py
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-import scipy.stats as stats
-dataset=pd.read_csv("/content/heights.csv")
-dataset
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/28a59ebe-bdcc-4f04-93be-c29c353cdcb0)
+
+### 15) Boxplot
+```Python
+dsf=sns.boxplot(dff)
 ```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/65296f84-d620-42a2-91e9-825f3313e72c)
-```py
-df = pd.read_csv("heights.csv")
-q1 = df['height'].quantile(0.25)
-q2 = df['height'].quantile(0.5)
-q3 = df['height'].quantile(0.75)
+     
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/9876bce8-ef7f-49b2-8a97-114162113c71)
+
+
+### 16) Scatterplot
+```Python
+dsf=sns.scatterplot(dff)
 ```
-```py
-iqr = q3-q1
+   
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/8144b619-8a24-44fd-a670-d317c88e81f9)
+
+
+
+### 17) IQR
+```Python
+q1=dff.quantile(0.25)
+q2=dff.quantile(0.5)
+q3=dff.quantile(0.75)
+iqr=q3-q1
 iqr
 ```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/b9d6b692-7f29-4303-8e22-335186cf6ae3)
-```py
-low = q1 - 1.5*iqr
+
+              
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/5ce6b72c-20d6-4542-a6ef-f607de82fc3d)
+
+    
+### 18) Checking the high and low value
+```Python
+low=q1-1.5*iqr
 low
-```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/3f341bea-42c2-4cbd-928a-9e1fa576cfaf)
-```py
-high = q3 + 1.5*iqr
+high=q3+1.5*iqr
 high
 ```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/ae80602f-3344-443c-a723-d5cef7928731)
-```py
-df1 = df[((df['height'] >=low)& (df['height'] <=high))]
-df1
+
+              
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/23185839-8632-43ee-bd1c-33da6ec53f9c)
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/aef8585c-4c27-4d68-a0cb-653026339b45)
+
+
+    
+### 19) Filtering outlier value
+```Python
+dff=dff[((dff>=low)&(dff<=high))]
+dff
 ```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/3e5ce1e1-567e-4253-82bb-192c04024d35)
-```py
-z = np.abs(stats.zscore(df['height']))
+     
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/a350867b-a6c0-4d3a-94fa-7e13b6874499)
+
+    
+### 20) Dropping the null value
+```Python
+dff.dropna()
+```
+
+              
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/e89a47bf-418b-4d60-9c75-f4e150bde470)
+
+
+    
+### 21) Box plotting after filtering outlier
+```Python
+sns.boxplot(data=dff)
+```
+     
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/b26c5fa9-3286-4299-a3e0-462659b72e6d)
+
+  
+### 22) Z Score
+```Python
+import pandas as pd
+import seaborn as sns
+import numpy as np
+from scipy import stats
+data={'weight':[12,15,18,21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57,60,63,66,69,202,72, 75, 78, 81, 84, 232, 87, 90, 93,96,99,258]}
+ds=pd.DataFrame(data)
+ds
+```
+ 
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/c81cd121-42a2-4608-892b-33755423d018)
+
+### 23) Z Score
+```Python
+import pandas as pd
+import seaborn as sns
+import numpy as np
+from scipy import stats
+data={'weight':[12,15,18,21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57,60,63,66,69,202,72, 75, 78, 81, 84, 232, 87, 90, 93,96,99,258]}
+ds=pd.DataFrame(data)
+ds
+```
+
+#### OUTPUT:
+
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/c81cd121-42a2-4608-892b-33755423d018)
+
+    
+### 24) Z Score
+```Python
+sns.boxplot(data=ds)
+```
+
+              
+#### OUTPUT:
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/a1afb418-e531-4eaa-9f0f-db5be7b0c20c)
+
+    
+ ### 25) Z Score
+```Python
+z=np.abs(stats.zscore(ds))
 z
 ```
-![image](https://github.com/Yamunaasri/exno1/assets/115707860/ef207f0d-fcc0-452e-bbd3-5f3c48a03515)
+   
+#### OUTPUT:
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/f52c84e7-00eb-4c8e-b5a7-653ea094ed1f)
+
+
+
+
+### 26)Z score 
+```Python
+print(ds[z['weight']>3])
+```
+
+
+#### OUTPUT:
+![image](https://github.com/LATHIKESHWARAN/exno1/assets/119393556/5deaf50a-9342-48f4-ae99-1cc751d39320)
 
 # Result
 The data clearning has beeen done successfully.
